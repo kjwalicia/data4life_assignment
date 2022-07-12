@@ -12,7 +12,7 @@ Install the dependencies:
 `pip install -r requirements.txt`
 
 Run the API with Uvicorn:  
-CD into app directory and run this command `uvicorn src.main:app --reload`
+CD into src directory and run this command `uvicorn src.main:app --reload`
 
 ## Interacting with the Web API
 Go to this url in a browser `http://127.0.0.1:8000/docs`
