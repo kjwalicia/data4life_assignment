@@ -20,7 +20,7 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/appointments/{appointment_id}", response_model=list[schemas.Appointment])
+@app.get("/appointments/", response_model=list[schemas.Appointment])
 def Q2_get_doctor_appointments(doctor_id, 
                             appointment_day:int,
                             appointment_month:int,
@@ -55,7 +55,7 @@ def Q2_get_doctor_appointments(doctor_id,
 
 
 
-@app.post("/appointment/", response_model=schemas.Appointment)
+@app.post("/appointments/", response_model=schemas.Appointment)
 def Q3_fix_appointment(patient_id:str,
                     doctor_id:str, 
                     appointment_day:int,
@@ -109,7 +109,7 @@ def Q3_fix_appointment(patient_id:str,
 
 
 
-@app.put("/appointment/{appointment_id}", response_model=schemas.Appointment)
+@app.put("/appointments/", response_model=schemas.Appointment)
 def Q4_cancel_appointment(patient_id:str,
                        doctor_id:str,
                        appointment_day:int,
@@ -169,25 +169,25 @@ def home():
 
 
 
-@app.get("/patient/", response_model=list[schemas.Patient])
+@app.get("/patients", response_model=list[schemas.Patient])
 def get_all_patients(db:Session=Depends(get_db)):
     return crud.get_all_patients(db)
 
 
 
-@app.get("/doctor/", response_model=list[schemas.Doctor])
+@app.get("/doctors", response_model=list[schemas.Doctor])
 def get_all_doctors(db:Session=Depends(get_db)):
     return crud.get_all_doctors(db)
 
 
 
-@app.get("/appointment/", response_model=list[schemas.Appointment])
+@app.get("/appointments", response_model=list[schemas.Appointment])
 def get_all_appointments(db:Session=Depends(get_db)):
     return crud.get_all_appointments(db)
 
 
 
-@app.get("/doctor/{doctor_id}", response_model=schemas.Doctor)
+@app.get("/doctors/doctor={doctor_name}", response_model=schemas.Doctor)
 def get_doctor_by_name(doctor_name,
                        db:Session=Depends(get_db)):
     
@@ -200,7 +200,7 @@ def get_doctor_by_name(doctor_name,
 
 
 
-@app.get("/patient/{patient_id}", response_model=schemas.Patient)
+@app.get("/patients/patient={patient_name}", response_model=schemas.Patient)
 def get_patient_by_name(patient_name,
                         db:Session=Depends(get_db)):
     
